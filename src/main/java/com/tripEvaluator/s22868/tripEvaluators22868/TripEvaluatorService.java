@@ -93,7 +93,9 @@ public class TripEvaluatorService {
         }
     }
     public void generateUserNewNick(User user){
-        String newNickname = user.getName();
-        user.setNick("NOWY "+newNickname+" NOWY");
+        if(user.getNick().isBlank() || user.getNick().isEmpty()){
+            String newNickname = user.getName();
+            user.setNick("NOWY "+newNickname+" NOWY");
+        }
     }
 }
