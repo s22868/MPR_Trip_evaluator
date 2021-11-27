@@ -10,16 +10,17 @@ public class Review {
     private String content;
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
-
-    //dodać własne pola
+    //własne pola
+    private ReviewRating rating;
 
 
     public Review() {}
 
-    public Review(Integer id, String content, User user) {
+    public Review(Integer id, String content, User user, ReviewRating rating) {
         this.id = id;
         this.content = content;
         this.user = user;
+        this.rating = rating;
     }
 
     public Integer getId() {
@@ -46,12 +47,21 @@ public class Review {
         this.user = user;
     }
 
+    public ReviewRating getRating() {
+        return rating;
+    }
+
+    public void setRating(ReviewRating rating) {
+        this.rating = rating;
+    }
+
     @Override
     public String toString() {
         return "Review{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
-                ", author=" + user +
+                ", user=" + user +
+                ", rating=" + rating +
                 '}';
     }
 }

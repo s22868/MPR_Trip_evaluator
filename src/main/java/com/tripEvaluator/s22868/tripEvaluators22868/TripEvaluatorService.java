@@ -12,18 +12,18 @@ public class TripEvaluatorService {
         this.tripEvaluatorRepo = tripEvaluatorRepo;
     }
     public Trip getExampleTrip(){
-        User testUser = new User(null,"test");
-        Review testrev = new Review(null, "Test", testUser);
+        User testUser = new User(null,"test", "testowy nick");
+        Review testrev = new Review(null, "Test", testUser, ReviewRating.CZTERY_GWIAZDKI);
         List<Review> listaReview = List.of(testrev);
-        Trip trip = new Trip(null,"testowa","do domu", listaReview);
+        Trip trip = new Trip(null,"testowa","do domu", listaReview, 20);
         return tripEvaluatorRepo.save(trip);
     }
 
     public Trip addTrip(String title){
-        User testUser = new User(null,title);
-        Review testrev = new Review(null, title, testUser);
+        User testUser = new User(null,title, "testowy nick");
+        Review testrev = new Review(null, title, testUser, ReviewRating.TRZY_GWIAZDKI);
         List<Review> listaReview = List.of(testrev);
-        Trip trip = new Trip(null, title,"na mazury", listaReview);
+        Trip trip = new Trip(null, title,"na mazury", listaReview, 40);
 
         return tripEvaluatorRepo.save(trip);
     }
@@ -54,8 +54,8 @@ public class TripEvaluatorService {
     public String addReview(Integer tripId, String content, String user) throws Exception {
         if(tripEvaluatorRepo.findById(tripId).isPresent()){
             Trip tripToAddReview = tripEvaluatorRepo.findById(tripId).get();
-            User userAddingReview = new User(null, user);
-            Review reviewToAdd = new Review(null, content, userAddingReview);
+            User userAddingReview = new User(null, user, "testowy nick");
+            Review reviewToAdd = new Review(null, content, userAddingReview, ReviewRating.DWIE_GWIAZDKI);
             tripToAddReview.addReviewToList(reviewToAdd);
             tripEvaluatorRepo.save(tripToAddReview);
             return "Pomyślnie dodano review";

@@ -12,15 +12,18 @@ public class Trip {
     private String destination;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Review> reviewList;
-    //dodać własne
+    //własne pola
+    private int price;
+
 
     public Trip() {}
 
-    public Trip(Integer id, String title, String destination, List<Review> reviewList) {
+    public Trip(Integer id, String title, String destination, List<Review> reviewList, int price) {
         this.id = id;
         this.title = title;
         this.destination = destination;
         this.reviewList = reviewList;
+        this.price = price;
     }
 
     public Integer getId() {
@@ -58,6 +61,13 @@ public class Trip {
     public void addReviewToList(Review review){
         this.reviewList.add(review);
     }
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     @Override
     public String toString() {
@@ -66,7 +76,7 @@ public class Trip {
                 ", title='" + title + '\'' +
                 ", destination='" + destination + '\'' +
                 ", reviewList=" + reviewList +
+                ", price=" + price +
                 '}';
     }
-//    dodać tu se własne pola
 }

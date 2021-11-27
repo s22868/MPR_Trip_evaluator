@@ -11,15 +11,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
-
-    //dodać własne pola
+    //własne pola
+    private String nick;
 
 
     public User() {}
 
-    public User(Integer id, String name) {
+    public User(Integer id, String name, String nick) {
         this.id = id;
         this.name = name;
+        this.nick = nick;
     }
 
     public Integer getId() {
@@ -38,11 +39,20 @@ public class User {
         this.name = name;
     }
 
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", nick='" + nick + '\'' +
                 '}';
     }
 }
