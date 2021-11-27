@@ -3,6 +3,7 @@ package com.tripEvaluator.s22868.tripEvaluators22868;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class TripEvaluatorService {
@@ -63,9 +64,36 @@ public class TripEvaluatorService {
             throw new Exception("Nie znaleziono Tripu o podanym id");
         }
     }
-//
-//    public User addUser(String name){
-//
-//    }
 
+    public boolean isReviewEmpty(Trip trip){
+        return trip.getReviewList().isEmpty();
+    }
+
+    public boolean isExpensive(Trip trip){
+        return trip.getPrice() > 100;
+    }
+
+    public boolean isCheap(Trip trip){
+        return trip.getPrice() < 20;
+    }
+
+    public boolean isDreamHolidays(Trip trip){
+        return trip.getDestination().toLowerCase() == "mazury";
+    }
+
+    public void addReviewWithoutSave(Trip trip, Review review){
+        if(trip.getReviewList() != null){
+            trip.getReviewList().add(review);
+        }
+    }
+
+    public void resetReviewsWithoutSave(Trip trip){
+        if(trip.getReviewList() != null){
+            trip.setReviewList(null);
+        }
+    }
+    public void generateUserNewNick(User user){
+        String newNickname = user.getName();
+        user.setNick("NOWY "+newNickname+" NOWY");
+    }
 }
