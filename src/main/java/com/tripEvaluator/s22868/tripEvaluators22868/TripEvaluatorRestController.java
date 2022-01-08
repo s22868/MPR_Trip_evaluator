@@ -14,13 +14,18 @@ public class TripEvaluatorRestController {
         this.tripEvaluatorService = tripEvaluatorService;
     }
 
+    @GetMapping
+    public ResponseEntity<String> getHelloWorld(){
+        return ResponseEntity.ok("Hello world");
+    }
+
     @GetMapping("/test")
     public ResponseEntity<Trip> test(){
         return ResponseEntity.ok(tripEvaluatorService.getExampleTrip());
     }
 
-    @GetMapping("/addTrip/{title}")
-    public ResponseEntity<Trip> addTrip(@PathVariable("title") String title) {
+    @GetMapping("/addTrip")
+    public ResponseEntity<Trip> addTrip(@RequestParam("title") String title) {
         return ResponseEntity.ok(tripEvaluatorService.addTrip(title));
     }
 

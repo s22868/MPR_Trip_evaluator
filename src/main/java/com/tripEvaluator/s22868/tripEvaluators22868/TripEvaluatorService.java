@@ -3,7 +3,6 @@ package com.tripEvaluator.s22868.tripEvaluators22868;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class TripEvaluatorService {
@@ -78,7 +77,7 @@ public class TripEvaluatorService {
     }
 
     public boolean isDreamHolidays(Trip trip){
-        return trip.getDestination().toLowerCase() == "mazury";
+        return trip.getDestination().equalsIgnoreCase("mazury");
     }
 
     public void addReviewWithoutSave(Trip trip, Review review){
@@ -98,4 +97,10 @@ public class TripEvaluatorService {
             user.setNick("NOWY "+newNickname+" NOWY");
         }
     }
+
+    public boolean existById(Integer id) {
+            return tripEvaluatorRepo.existsById(id);
+    }
+
+
 }
